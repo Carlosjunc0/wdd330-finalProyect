@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function loadHomeData() {
-    const data = await fetchData('./data/home-data.json');
+    const data = await fetchData('/data/home-data.json');
     if (!data) return;
 
     renderHero(data.hero);
