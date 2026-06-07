@@ -1,0 +1,28 @@
+{
+  "name": "wdd330-finalproyect",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carlosjunc0/wdd330-finalProyect.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Carlosjunc0/wdd330-finalProyect/issues"
+  },
+  "homepage": "https://github.com/Carlosjunc0/wdd330-finalProyect#readme",
+  "devDependencies": {
+    "eslint": "^10.4.1",
+    "vite": "^8.0.16"
+  }
+}

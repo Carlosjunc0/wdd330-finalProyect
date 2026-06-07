@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Luvia Design | Digital Invitations</title>
+    <meta name="description" content="Create and share beautiful, personalized digital invitations for weddings, birthdays, and special events.">
+    <meta name="author" content="Carlos Junco">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo-container">
+            <a href="index.html" class="logo-text" aria-label="Go to homepage">Luvia Design</a>
+        </div>
+        
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="main-nav">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+
+        <nav id="main-nav" aria-label="Main Navigation">
+            <ul class="nav-links">
+                <li><a href="index.html" aria-current="page">Home</a></li>
+                <li><a href="invitation.html">Create</a></li>
+                <li><a href="rsvp.html">RSVP</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="hero-section" id="hero-container">
+            </section>
+
+        <section class="benefits-section wrapper">
+            <div class="benefits-grid" id="benefits-container">
+                </div>
+        </section>
+
+        <section class="models-section wrapper">
+            <h2 class="section-title">Explore Our Templates</h2>
+            <div class="models-grid" id="models-container">
+                </div>
+        </section>
+
+        <section class="custom-cta-section" id="cta-container">
+            </section>
+
+        <section class="reviews-section wrapper">
+            <h2 class="section-title text-center">What Our Clients Say</h2>
+            <div class="deluxe-carousel-container" aria-roledescription="carousel">
+                <button class="carousel-btn prev-btn" aria-label="Previous review">&#10094;</button>
+                <div class="carousel-track-wrapper">
+                    <ul class="carousel-track" id="reviews-track" aria-live="polite">
+                        </ul>
+                </div>
+                <button class="carousel-btn next-btn" aria-label="Next review">&#10095;</button>
+                <div class="carousel-nav" id="carousel-dots"></div>
+            </div>
+        </section>
+
+        <section class="faq-section wrapper">
+            <h2 class="section-title text-center">Frequently Asked Questions</h2>
+            <div class="accordion-container" id="faq-container">
+                </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="wrapper footer-grid">
+            <div class="footer-brand">
+                <span class="logo-text">Luvia Design</span>
+                <p>Crafting digital elegance for your most memorable moments.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="invitation.html">Create Invitation</a></li>
+                    <li><a href="rsvp.html">Find Your Event</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="https://www.instagram.com/" aria-label="Visit our Instagram" target="_blank">Instagram</a></li>
+                    <li><a href="https://mx.pinterest.com/" aria-label="Visit our Pinterest" target="_blank">Pinterest</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year"></span> Luvia Design. WDD 330 Final Project.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>

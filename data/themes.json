@@ -1,0 +1,32 @@
+[
+  {
+    "id": "theme-01",
+    "name": "Elegancia Floral",
+    "eventType": "Wedding",
+    "coverUrl": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80",
+    "colorPalette": [
+      "#2C4A3E",
+      "#FAF8F5"
+    ]
+  },
+  {
+    "id": "theme-02",
+    "name": "Minimalista Moderno",
+    "eventType": "Quinceaños",
+    "coverUrl": "https://images.unsplash.com/photo-1763625648548-283c88d75c93?q=80&w=388&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "colorPalette": [
+      "#333333",
+      "#C5A880"
+    ]
+  },
+  {
+    "id": "theme-03",
+    "name": "Minimalista Moderno",
+    "eventType": "Graduation",
+    "coverUrl": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80",
+    "colorPalette": [
+      "#333333",
+      "#C5A880"
+    ]
+  }
+]
