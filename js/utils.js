@@ -1,8 +1,4 @@
-// js/utils.js
-/**
- * Realiza una petición fetch asíncrona genérica con manejo de errores.
- * Demuestra el uso de async/await y bloques try/catch.
- */
+/** Fetches data from a REST API endpoint with error handling */
 export async function fetchData(url) {
     try {
         const response = await fetch(url);
@@ -16,18 +12,14 @@ export async function fetchData(url) {
     }
 }
 
-/**
- * Middleware de Frontend (Route Guard):
- * Utiliza un closure para verificar permisos antes de montar un módulo.
- * Útil para rsvp.html o la creación de invitaciones si no hay una sesión o ID temporal guardado.
- */
+/** Middleware function to protect routes that require authentication */
 export const requireAuth = (callback) => {
     return (...args) => {
-        // Lógica simulada: Verificar localStorage
+
         const hasAccess = localStorage.getItem('luvia_temp_session');
         if (!hasAccess) {
             console.warn("Middleware: Access denied. Redirecting...");
-            // window.location.href = '/index.html'; // Descomentar en producción
+
             return null;
         }
         return callback(...args);

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your Invitation | Luvia Design</title>
+    <meta name="description" content="You are invited! View the event details and RSVP.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="template-body">
+
+    <main class="premium-invitation-card" id="invitation-card">
+        <div class="inner-ornament-border">
+            
+            <div class="invitation-monogram" aria-hidden="true">
+                <div class="monogram-envelope">♦</div>
+            </div>
+
+            <p class="invitation-subtitle">You are cordially invited to celebrate the union of</p>
+            <h1 id="display-names" class="premium-event-title">Loading...</h1>
+            
+            <div class="classic-divider" aria-hidden="true"><span></span>♦<span></span></div>
+
+            <p id="display-message" class="premium-event-message"></p>
+
+            <section class="premium-section" aria-label="Countdown timer">
+                <div id="countdown-timer" class="modern-timer-grid" aria-live="polite"></div>
+            </section>
+
+            <section class="premium-section details-split-grid">
+                <div class="detail-item-box">
+                    <h2>Date & Time</h2>
+                    <p id="display-date" class="primary-highlight"></p>
+                    <p id="display-time" class="secondary-highlight"></p>
+                    
+                    <a href="#" class="btn-calendar" id="add-to-calendar-btn">
+                         Add to Calendar
+                    </a>
+                </div>
+                <div class="detail-item-box">
+                    <h2>Location Venue</h2>
+                    <p id="display-location" class="location-text"></p>
+                </div>
+            </section>
+
+            <section class="premium-section map-integration-box">
+                <h2>Event Location Map</h2>
+                <div id="map-api-container" class="map-iframe-wrapper">
+                    <div class="map-placeholder">Initializing Google Maps API...</div>
+                </div>
+            </section>
+
+            <section class="premium-section registry-box">
+                <h2>Gift Registry</h2>
+                <p>Your presence is our greatest gift, but if you wish to surprise us, you can find our wishlist here:</p>
+                <div class="registry-buttons">
+                    <a href="https://www.amazon.com" target="_blank" class="btn-secondary" rel="noopener">Amazon Registry</a>
+                </div>
+            </section>
+
+            <section class="premium-section action-footer-grid">
+                <div class="qr-api-wrapper">
+                    <p>Scan to view on your mobile phone</p>
+                    <img id="qr-code-img" src="" alt="Dynamic QR code connecting to this event layout" width="150" height="150" loading="lazy">
+                </div>
+                
+                <div class="rsvp-action-box">
+                    <h2>Kindly Confirm Your Attendance</h2>
+                    <p>Please let us know if you can join us before the date.</p>
+                    <a href="rsvp.html" class="btn-primary custom-touch-target">RSVP Confirmation</a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="template-master-footer">
+        <p>Designed with elegance by <a href="index.html">Luvia Design</a></p>
+    </footer>
+
+    <script type="module" src="./js/template.js"></script>
+</body>
+</html>

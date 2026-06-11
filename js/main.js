@@ -132,9 +132,8 @@ function initDeluxeCarousel() {
     track.closest('.deluxe-carousel-container').addEventListener('mouseleave', () => {
         autoPlayInterval = setInterval(() => moveToSlide(currentIndex + 1), 5000);
     });
-} // <-- ¡AQUÍ TERMINA EL CARRUSEL!
+}
 
-// 2. Funciones globales fuera del carrusel
 function initMobileMenu() {
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mainNav = document.getElementById('main-nav');

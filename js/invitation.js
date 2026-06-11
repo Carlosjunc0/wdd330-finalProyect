@@ -1,92 +1,76 @@
-import { requireAuth } from './utils.js';
-
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('invitation-form');
-    
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const templateFromUrl = urlParams.get('template') || 'wedding-oliva';
+
     if (form) {
+        document.getElementById('selectedTemplate').value = templateFromUrl;
+        document.getElementById('template-badge').textContent = `Template: ${templateFromUrl.replace('-', ' ')}`;
         form.addEventListener('submit', handleFormSubmit);
     }
 });
 
-/**
- * Maneja el evento de envío del formulario.
- * Valida los campos y guarda el payload en LocalStorage.
- * @param {Event} e 
- */
 function handleFormSubmit(e) {
-    e.preventDefault(); // Evita la recarga de la página
-
+    e.preventDefault();
     const form = e.target;
-    const isValid = validateForm(form);
 
-    if (isValid) {
-        const formData = new FormData(form);
-        const eventPayload = {
-            id: generateUUID(),
-            name: formData.get('eventName').trim(),
-            date: formData.get('eventDate'),
-            time: formData.get('eventTime'),
-            location: formData.get('eventLocation').trim(),
-            message: formData.get('eventMessage').trim(),
-            createdAt: new Date().toISOString()
-        };
+    if (!validateForm(form)) return;
 
-        // Persistencia en LocalStorage
-        try {
-            localStorage.setItem('luvia_current_invitation', JSON.stringify(eventPayload));
-            console.log("Datos guardados exitosamente.");
-            
-            // Simulación de redirección a la vista previa (se construirá luego)
-            alert("Invitation details saved! Ready for preview.");
-            // window.location.href = 'preview.html'; 
-        } catch (error) {
-            console.error("Error saving to LocalStorage:", error);
-        }
-    }
+    const formData = new FormData(form);
+    const eventPayload = {
+        template: formData.get('selectedTemplate') || 'wedding-oliva',
+        names: formData.get('eventNames').trim(),
+        date: formData.get('eventDate'),
+        time: formData.get('eventTime'),
+        location: formData.get('eventLocation').trim(),
+        message: formData.get('eventMessage').trim()
+    };
+
+    // print to console for debugging
+    console.log("Guardando datos:", eventPayload);
+
+    // save to localStorage and redirect to template.html
+    localStorage.setItem('luvia_current_invitation', JSON.stringify(eventPayload));
+
+    // redirect to template.html with query param for theme
+    window.location.href = `template.html?theme=${eventPayload.template}`;
 }
 
-/**
- * Valida los campos del formulario usando Regex y manipulación del DOM.
- * @param {HTMLFormElement} form 
- * @returns {boolean}
- */
 function validateForm(form) {
     let isValid = true;
-    
-    // Selectores de inputs y errores
-    const nameInput = form.eventName;
-    const nameError = document.getElementById('eventNameError');
-    const locationInput = form.eventLocation;
-    const locationError = document.getElementById('eventLocationError');
+    const names = form.eventNames;
+    const date = form.eventDate;
+    const time = form.eventTime;
+    const location = form.eventLocation;
 
-    // Resetear estados
-    nameInput.classList.remove('invalid');
-    nameError.textContent = '';
-    locationInput.classList.remove('invalid');
-    locationError.textContent = '';
+    document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+    document.querySelectorAll('input, textarea').forEach(el => el.classList.remove('invalid'));
 
-    // Regex: Permite letras, números, espacios y caracteres especiales básicos
-    const safeTextRegex = /^[a-zA-Z0-9\s.,&'-]{3,100}$/;
-
-    if (!safeTextRegex.test(nameInput.value.trim())) {
-        nameInput.classList.add('invalid');
-        nameError.textContent = 'Please enter a valid event name (3-100 characters).';
+    const nameRegex = /^[a-zA-Z\s&'-]{3,100}$/;
+    if (!nameRegex.test(names.value.trim())) {
+        names.classList.add('invalid');
+        document.getElementById('eventNamesError').textContent = 'Please enter valid names (letters, spaces, & allowed).';
         isValid = false;
     }
 
-    if (locationInput.value.trim().length < 5) {
-        locationInput.classList.add('invalid');
-        locationError.textContent = 'Location address is too short.';
+    if (!date.value) {
+        date.classList.add('invalid');
+        document.getElementById('eventDateError').textContent = 'Date is required.';
+        isValid = false;
+    }
+
+    if (!time.value) {
+        time.classList.add('invalid');
+        document.getElementById('eventTimeError').textContent = 'Time is required.';
+        isValid = false;
+    }
+
+    if (location.value.trim().length < 5) {
+        location.classList.add('invalid');
+        document.getElementById('eventLocationError').textContent = 'Please provide a more descriptive location address.';
         isValid = false;
     }
 
     return isValid;
-}
-
-/**
- * Utilidad: Generador de UUID para identificar eventos de forma única
- * @returns {string}
- */
-function generateUUID() {
-    return crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 15);
 }

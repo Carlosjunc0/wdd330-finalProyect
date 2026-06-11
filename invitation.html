@@ -1,64 +1,99 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Create Invitation | Luvia Design</title>
-    <meta name="description" content="Design and customize your digital event invitation.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="./css/styles.css">
-</head>
+    <meta
+      name="description"
+      content="Design and customize your digital event invitation."
+    />
 
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+
+  <body>
     <header class="main-header">
-        <div class="logo-container">
-            <a href="index.html" class="logo-text" aria-label="Go to homepage">Luvia Design</a>
-        </div>
-        
-        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="main-nav">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-        </button>
+      <div class="logo-container">
+        <a href="index.html" class="logo-text" aria-label="Go to homepage"
+          >Luvia Design</a
+        >
+      </div>
 
-        <nav id="main-nav" aria-label="Main Navigation">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="invitation.html" aria-current="page">Create</a></li>
-                <li><a href="rsvp.html">RSVP</a></li>
-            </ul>
-        </nav>
+      <button
+        id="mobile-menu-btn"
+        class="mobile-menu-btn"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="main-nav"
+      >
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <nav id="main-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="invitation.html" aria-current="page">Create</a></li>
+          <li><a href="rsvp.html">RSVP</a></li>
+        </ul>
+      </nav>
     </header>
 
-    <main id="main-content" class="container">
-        </main>
+    <main id="main-content" class="wrapper">
+        <div class="text-center">
+            <h1>Customize Your Event Details</h1>
+            <p id="template-badge" style="color: var(--secondary-color); font-weight: bold; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 1px;"></p>
+        </div>
+        
+        <section class="form-section">
+            <form id="invitation-form" novalidate>
+                <input type="hidden" id="selectedTemplate" name="selectedTemplate" value="">
+
+                <div class="form-group">
+                    <label for="eventNames">Names (Bride & Groom or Quinceañera)</label>
+                    <input type="text" id="eventNames" name="eventNames" required placeholder="e.g., Charlotte & Oliver">
+                    <span class="error-message" id="eventNamesError" aria-live="polite"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventDate">Date</label>
+                        <input type="date" id="eventDate" name="eventDate" required>
+                        <span class="error-message" id="eventDateError" aria-live="polite"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventTime">Time</label>
+                        <input type="time" id="eventTime" name="eventTime" required>
+                        <span class="error-message" id="eventTimeError" aria-live="polite"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventLocation">Location Name & Full Address</label>
+                    <input type="text" id="eventLocation" name="eventLocation" required placeholder="St. Patrick's Cathedral, 5th Ave, New York">
+                    <span class="error-message" id="eventLocationError" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventMessage">Welcome Message (Optional)</label>
+                    <textarea id="eventMessage" name="eventMessage" rows="3" placeholder="Together with our families, we invite you to celebrate..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary full-width">Save & Preview</button>
+            </form>
+        </section>
+    </main>
 
     <footer class="main-footer">
-        <div class="wrapper footer-grid">
-            <div class="footer-brand">
-                <span class="logo-text">Luvia Design</span>
-                <p>Crafting digital elegance for your most memorable moments.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Explore</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="invitation.html">Create Invitation</a></li>
-                    <li><a href="rsvp.html">Find Your Event</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <h4>Connect</h4>
-                <ul>
-                    <li><a href="https://www.instagram.com/" aria-label="Visit our Instagram" target="_blank">Instagram</a></li>
-                    <li><a href="https://mx.pinterest.com/" aria-label="Visit our Pinterest" target="_blank">Pinterest</a></li>
-                </ul>
-            </div>
-        </div>
         <div class="footer-bottom">
             <p>&copy; <span id="current-year"></span> Luvia Design. WDD 330 Final Project.</p>
         </div>
