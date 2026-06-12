@@ -88,43 +88,42 @@ async function fetchUnsplashDecoration(templateTheme) {
 async function initDynamicCountdown(targetDate, targetTime) {
     const container = document.getElementById('countdown-timer');
     const targetDateTime = new Date(`${targetDate}T${targetTime}:00`).getTime();
+    let currentServerTime;
     
     try {
-        // Trying to get the current time from the World Time API to ensure the countdown is accurate regardless of the user's local clock
-        const response = await fetch('http://worldtimeapi.org/api/ip');
+        const response = await fetch('https://worldtimeapi.org/api/ip');
+        if (!response.ok) throw new Error('API response was not ok');
         const timeData = await response.json();
-        
-        // Use the server time as the starting point for the countdown
-        let currentServerTime = timeData.unixtime * 1000;
-
-        // Set an interval to update the countdown every second
-        const interval = setInterval(() => {
-            currentServerTime += 1000; // sum 1 second to the server time on each tick
-            const distance = targetDateTime - currentServerTime;
-
-            if (distance < 0) {
-                clearInterval(interval);
-                container.innerHTML = "<h3>The event has started!</h3>";
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Inject data into DOM
-            container.innerHTML = `
-                <div style="display: flex; gap: 1rem; justify-content: center; font-family: var(--font-heading); color: var(--primary-color);">
-                    <div class="time-box"><strong>${days}</strong><br>Days</div>
-                    <div class="time-box"><strong>${hours}</strong><br>Hours</div>
-                    <div class="time-box"><strong>${minutes}</strong><br>Mins</div>
-                    <div class="time-box"><strong>${seconds}</strong><br>Secs</div>
-                </div>
-            `;
-        }, 1000);
-
+        currentServerTime = timeData.unixtime * 1000;
     } catch (error) {
-        console.error("Time API failed, falling back to local time", error);
+        console.warn("Time API blocked or rate-limited. Falling back to local device time.");
+        // Fallback to local time if API fails
+        currentServerTime = new Date().getTime();
     }
+
+    // Start countdown interval
+    const interval = setInterval(() => {
+        currentServerTime += 1000; 
+        const distance = targetDateTime - currentServerTime;
+
+        if (distance < 0) {
+            clearInterval(interval);
+            container.innerHTML = "<h3>The event has started!</h3>";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        container.innerHTML = `
+            <div style="display: flex; gap: 1rem; justify-content: center; font-family: var(--font-heading); color: var(--primary-color);">
+                <div class="time-box"><strong>${days}</strong><br>Days</div>
+                <div class="time-box"><strong>${hours}</strong><br>Hours</div>
+                <div class="time-box"><strong>${minutes}</strong><br>Mins</div>
+                <div class="time-box"><strong>${seconds}</strong><br>Secs</div>
+            </div>
+        `;
+    }, 1000);
 }
