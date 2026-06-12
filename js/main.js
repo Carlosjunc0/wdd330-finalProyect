@@ -3,7 +3,9 @@ import { fetchData } from './utils.js';
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     updateCopyrightYear();
-    loadHomeData();
+    if (document.getElementById('hero-container')) {
+        loadHomeData();
+    }
 });
 
 async function loadHomeData() {

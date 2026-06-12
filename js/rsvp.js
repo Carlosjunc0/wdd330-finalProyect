@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
 async function handleRSVPSubmit(e) {
     e.preventDefault();
     const form = e.target;
-    
+
     if (validateRSVP(form)) {
         const formData = new FormData(form);
         const submitBtn = form.querySelector('button[type="submit"]');
         const successMsg = document.getElementById('success-message');
-        
+
         // Extract form values
         const guestName = formData.get('guestName').trim();
         const guestEmail = formData.get('guestEmail').trim();
@@ -29,18 +29,17 @@ async function handleRSVPSubmit(e) {
             const payload = {
                 service_id: import.meta.env.VITE_EMAILJS_SERVICE_ID,
                 template_id: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-                user_id: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+                user_id: import.meta.env.VITE_EMAILJS_PUBLIC_KEY, // <-- ¡CÁMBIALO A user_id AQUÍ!
                 template_params: {
                     to_name: guestName,
                     to_email: guestEmail,
                     reply_to: "contacto@luviadesign.com",
-                    message: attendanceStatus === 'yes' 
-                        ? `Thank you for confirming your attendance! We are so excited to see you at the event.` 
+                    message: attendanceStatus === 'yes'
+                        ? `Thank you for confirming your attendance! We are so excited to see you at the event.`
                         : `We are sorry you can't make it, but we appreciate you letting us know.`
                 }
             };
 
-            // Http request a EmailJS API para enviar el correo de confirmación
             const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -73,11 +72,11 @@ async function handleRSVPSubmit(e) {
 
 function validateRSVP(form) {
     let isValid = true;
-    
+
     const nameInput = form.guestName;
     const emailInput = form.guestEmail;
     const statusInput = form.attendanceStatus;
-    
+
     // Reset errors
     document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
     document.querySelectorAll('input, select').forEach(el => el.classList.remove('invalid'));
